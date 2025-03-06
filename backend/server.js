@@ -12,9 +12,9 @@ app.use(bodyParser.json());
 
 // MySQL Connection
 const db = mysql.createConnection({
-    host: 'localhost',
+    host: 'mysql',
     user: 'root', // Replace with your MySQL username
-    password: '', // Replace with your MySQL password
+    password: 'root', // Replace with your MySQL password
     database: 'myapp'
 });
 
