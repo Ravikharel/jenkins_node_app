@@ -76,7 +76,10 @@ pipeline {
             steps{
                 script{ 
                     sh '''
-                        docker compose exec mysql /bin/bash -c "while ! mysqladmin ping -h localhost -u root -proot --silent; do sleep 1; done"
+                       while ! docker compose exec mysql mysqladmin ping -u root -proot --silent; do
+                           echo "Waiting for MySQL to be ready..."
+                           sleep 40s
+                        done
                         docker compose exec mysql mysql -u root -proot -e "USE myapp; CREATE TABLE IF NOT EXISTS users (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255) NOT NULL, email VARCHAR(255) NOT NULL);"
                     '''
                 }
