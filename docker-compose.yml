@@ -41,6 +41,7 @@ services:
     
 
 volumes: 
-  - mysql-data: 
+   mysql-data: 
 networks: 
-  - naya-network:
+   naya-network:
+    driver: bridge
