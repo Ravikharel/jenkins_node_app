@@ -16,7 +16,7 @@ pipeline{
                         docker image build -t ${HARBOR_URL}/${IMAGE_NAME1}:${IMAGE_TAG} -f backend/Dockerfile backend/ 
                     '''
                 }
-            } ~
+            } 
 
         }
         stage('Pushing the image to the harbor.registry.local'){ 
