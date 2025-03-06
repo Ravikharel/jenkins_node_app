@@ -29,7 +29,7 @@ services:
       - mysql
     command: ["./wait-for-it.sh", "mysql:3306", "--", "npm", "start"]
   frontend:
-    build: harbor.registry.local/jenkins/frontend:v1
+    image: harbor.registry.local/jenkins/frontend:v1
     container_name: frontend_server
     ports:
       - '80:80'
