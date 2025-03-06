@@ -56,7 +56,7 @@ pipeline {
             }
         }
 
-        stage('Running Docker Compose and Configuring MySQL') { 
+        stage('Running Docker Compose ') { 
             agent {
                 label "vagrant-slave"
             }
@@ -66,7 +66,15 @@ pipeline {
                         docker compose -f /home/vagrant/jenkins/vagrant/docker-compose.yml up -d
                     """
                 }
-                script { 
+                
+            }
+        }
+        stage('Configuring MySQL'){ 
+            agent {
+                label "vagrant-slave"
+            }
+            steps{
+                script{ 
                     sh '''
                     docker compose exec mysql mysql -u root -proot -e "USE myapp; CREATE TABLE IF NOT EXISTS users (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255) NOT NULL, email VARCHAR(255) NOT NULL);"
                     '''
