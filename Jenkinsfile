@@ -40,6 +40,29 @@ pipeline {
                 }
             }
         }
+        stage('Add CA Certificate to Agent Node') {
+
+            agent { label 'vagrant-slave' }
+            steps {
+                script {
+                   
+                    sh 'scp /path/to/your/ca.crt vagrant@192.168.56.13:/tmp/ca.crt'
+
+                    
+                    sh '''
+                        sudo cp /tmp/ca.crt /usr/local/share/ca-certificates/ca.crt
+                        sudo update-ca-certificates
+                    '''
+
+                    
+                    sh '''
+                        sudo mkdir -p /etc/docker/certs.d/harbor.registry.local
+                        sudo cp /tmp/ca.crt /etc/docker/certs.d/harbor.registry.local/ca.crt
+                        sudo systemctl restart docker
+                    '''
+        }
+    }
+}
 
         stage('Pulling Images and Running MySQL Container on Agent Node') { 
             agent { 
