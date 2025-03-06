@@ -63,12 +63,12 @@ pipeline {
             steps { 
                 script { 
                     sh """
-                        docker-compose -f /home/vagrant/jenkins/vagrant/docker-compose.yml up -d
+                        docker compose -f /home/vagrant/jenkins/vagrant/docker-compose.yml up -d
                     """
                 }
                 script { 
                     sh '''
-                    docker-compose exec mysql mysql -u root -proot -e "USE myapp; CREATE TABLE IF NOT EXISTS users (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255) NOT NULL, email VARCHAR(255) NOT NULL);"
+                    docker compose exec mysql mysql -u root -proot -e "USE myapp; CREATE TABLE IF NOT EXISTS users (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255) NOT NULL, email VARCHAR(255) NOT NULL);"
                     '''
                 }
             }
