@@ -2,10 +2,10 @@ pipeline{
     agent any
     environment{
         HARBOR_URL = "harbor.registry.local/jenkins/"
-        IMAGE_NAME = frontend
-        IMAGE_NAME1 = backend
-        IMAGE_NAME2 = mysql 
-        IMAGE_TAG = v1
+        IMAGE_NAME = "frontend"
+        IMAGE_NAME1 = "backend"
+        IMAGE_NAME2 = "mysql" 
+        IMAGE_TAG = "v1"
     }
     stages{ 
         stage('building the images'){
