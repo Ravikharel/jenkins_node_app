@@ -33,7 +33,7 @@ pipeline{
         stage('Pushing the docker-compose file to the agent node'){ 
             steps{ 
                 script{ 
-                    sh "scp docker-compose.yml vagrant@$192.168.56.13:/home/vagrant/jenkins/vagrant/"
+                    sh "scp docker-compose.yml vagrant@192.168.56.13:/home/vagrant/jenkins/vagrant/"
                 }
             }
         }
