@@ -15,7 +15,7 @@ services:
   backend:
     container_name: backend_server
     build: 
-      context:  ${HARBOR_URL}/${IMAGE_NAME1}:${IMAGE_TAG}
+      context:  harbor.registry.local/jenkins/backend:v1
     ports: 
       - '5000:5000'
     environment:
@@ -29,7 +29,7 @@ services:
       - mysql
   frontend:
     build:
-      context: ${HARBOR_URL}/${IMAGE_NAME}:${IMAGE_TAG}
+      context: harbor.registry.local/jenkins/frontend:v1
     container_name: frontend_server
     ports:
       - '80:80'
